@@ -1,34 +1,32 @@
-import {useRef} from 'react'
-import emailjs from '@emailjs/browser';
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 function App() {
   const form = useRef();
 
-  const sendEmail = (e) =>{
+  const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
-      .sendForm('service_tjf371h', 'template_lfjngjl', form.current, {
-        publicKey: 'A2GewDCki3el96HOE',
+      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form.current, {
+        publicKey: "YOUR_PUBLIC_KEY",
       })
       .then(
         () => {
-          console.log('SUCCESS!');
+          console.log("SUCCESS!");
         },
         (error) => {
-          console.log('FAILED...', error.text);
-        },
+          console.log("FAILED...", error.text);
+        }
       );
 
-      e.target.reset();
-  }
+    e.target.reset();
+  };
 
-  
   return (
     <div>
       <form
-      ref={form}
-      onSubmit={sendEmail}
+        ref={form}
+        onSubmit={sendEmail}
         action=""
         className="flex flex-col items-center justify-center mt-[5%]"
       >
@@ -49,7 +47,7 @@ function App() {
           className="border-2 border-[#aaa] border-solid p-[20px] w-[380px] mt-[20px]"
           required
         />
-              <input
+        <input
           type="text"
           name="subject"
           placeholder="Enter Subject"
@@ -64,7 +62,10 @@ function App() {
           placeholder="Leave a message"
           className="border-2 border-[#aaa] border-solid  mt-[20px]"
         />
-        <button type="submit" className="bg-[#646cff] p-[20px] text-[#fff] border-none font-semibold cursor-pointer w-[380px] mt-[20px]">
+        <button
+          type="submit"
+          className="bg-[#646cff] p-[20px] text-[#fff] border-none font-semibold cursor-pointer w-[380px] mt-[20px]"
+        >
           Send Message
         </button>
       </form>
